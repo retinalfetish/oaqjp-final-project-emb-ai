@@ -7,6 +7,9 @@ def detector():
     text = request.args.get("textToAnalyze")
     result = emotion_detector(text)
 
+    if result["dominant_emotion"] is None:
+        return "Invalid text! Please try again!"
+
     keys = list(result.keys())
     values = list(result.values())
 
