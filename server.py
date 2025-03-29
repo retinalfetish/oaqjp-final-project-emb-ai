@@ -1,9 +1,15 @@
+"""
+Flask server for an emotion detector API.
+"""
 from flask import Flask, request, render_template
 from EmotionDetection.emotion_detection import emotion_detector
 app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def detector():
+    """
+    Accept a text string and return an AI analyzed response.
+    """
     text = request.args.get("textToAnalyze")
     result = emotion_detector(text)
 
@@ -25,9 +31,12 @@ def detector():
 
     # for k, v in result.items():
     #     response = response + f"'{k}': {v}, "
-    
+
     return response
 
 @app.route("/")
 def index():
+    """
+    Return the index page template.
+    """
     return render_template("index.html")
